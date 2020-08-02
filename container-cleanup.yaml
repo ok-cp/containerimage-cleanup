@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: container-image-cleanup
+  labels:
+    task: container-image-cleanup
+spec:
+  selector:
+    matchLabels:
+      task: container-image-cleanup
+  template:
+    metadata:
+      labels:
+        task: container-image-cleanup
+    spec:
+      containers:
+      - name: cleanup
+        image: ok-cp/container-image-cleanup:1.0
+        imagePullPolicy: Always
+        command: ["/cleanup.sh"]
+        env:
+        - name: CRON_TIME
+          value: "0 0 1 * *"
+        - name: UNTIL_HOURS
+          value: "1440"
+        volumeMounts:
+        - name: docker-socket-vol
+          mountPath: /var/run/docker.sock
+        - name: timezone
+          mountPath: /etc/localtime
+      volumes:
+      - name: docker-socket-vol
+        hostPath:
+          path: /var/run/docker.sock
+          type: File
+      - name: timezone
+        hostPath:
+          path: /etc/localtime
+
