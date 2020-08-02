@@ -5,7 +5,7 @@ RUN apk add docker
 RUN pip3 install --upgrade pip
 
 ADD cleanup.sh /
-ADD container-cleanup.py /
+ADD main.py /
 WORKDIR /
 
-RUN chmod 755 container-cleanup.py cleanup.sh
+RUN chmod 755 main.py cleanup.sh

@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: cleanup
-        image: ok-cp/container-image-cleanup:1.0
+        image: okcp/container-image-cleanup:1.0
         imagePullPolicy: Always
         command: ["/cleanup.sh"]
         env:

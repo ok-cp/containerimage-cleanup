@@ -5,7 +5,7 @@ import sys
 import time
 
 dateformat = '[%Y-%m-%d %H:%M:%S]'
-def __main__():
+def main():
         print('{0} Cleanup Container Images....'.format(datetime.now().strftime(dateformat)))
         until_hours = os.environ['UNTIL_HOURS']
         docker_label_key = os.environ['DOCKER_LABEL_KEY']
@@ -19,4 +19,5 @@ def pruneImage(key, value, hours) :
         outputs = proc.communicate(input="y".encode())
         print('{0} {1}'.format(datetime.now().strftime(dateformat), outputs))
 
-__main__()
+if __name__ == "__main__":
+    main()
