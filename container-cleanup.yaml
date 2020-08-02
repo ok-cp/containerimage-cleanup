@@ -20,9 +20,9 @@ spec:
         command: ["/cleanup.sh"]
         env:
         - name: CRON_TIME
-          value: "0 0 1 * *"
+          value: "0 0 * * 6"
         - name: UNTIL_HOURS
-          value: "1440"
+          value: "144h"
         volumeMounts:
         - name: docker-socket-vol
           mountPath: /var/run/docker.sock
